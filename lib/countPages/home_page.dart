@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_sm/counter/cubit/counter_cubit.dart';
-import 'package:learning_sm/pages/child_page.dart';
+import 'package:learning_sm/countPages/child_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

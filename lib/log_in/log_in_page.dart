@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_sm/log_in/cubit/login_cubit.dart';
-import 'package:learning_sm/pages/child_page.dart';
-import 'package:learning_sm/pages/home_page.dart';
+import 'package:learning_sm/countPages/child_page.dart';
+import 'package:learning_sm/countPages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();

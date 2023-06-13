@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_sm/counter/cubit/counter_cubit.dart';
+import 'package:learning_sm/fetchData/cubit/fetchdata_cubit.dart';
+import 'package:learning_sm/fetchData/data_page.dart';
+import 'package:learning_sm/fetchData/repo.dart';
+import 'package:learning_sm/fetchData/single_data.dart';
 import 'package:learning_sm/log_in/cubit/login_cubit.dart';
 import 'package:learning_sm/log_in/home_page.dart';
 import 'package:learning_sm/log_in/log_in_page.dart';
@@ -33,19 +37,52 @@ void main() {
 //   }
 // }
 
-//--------------- logging in and showing value after logged in
+//--------------- logging in validation and showing value after logged in
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider(
+//       create: (context) => LoginCubit(),
+//       child: MaterialApp(
+//         title: 'BLoC Cubit Login Example',
+//         home: LoginPage(),
+//         routes: {
+//           '/home': (context) => HomePage(),
+//         },
+//       ),
+//     );
+//   }
+// }
+
+//--------------- Api Call using Cubit------------------
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => FetchdataCubit(UserRepository()),
       child: MaterialApp(
-        title: 'BLoC Cubit Login Example',
-        home: LoginPage(),
+        title: 'Api Call',
+        home: Center(child: Main()),
         routes: {
-          '/home': (context) => HomePage(),
+          '/data': (context) => DataPage(),
+          //'data/singlepage': (context) => SingleData()
         },
       ),
     );
+  }
+}
+
+class Main extends StatelessWidget {
+  const Main({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/data');
+            },
+            child: Text("Fetch Data")));
   }
 }
