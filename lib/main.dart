@@ -8,6 +8,9 @@ import 'package:learning_sm/fetchData/single_data.dart';
 import 'package:learning_sm/log_in/cubit/login_cubit.dart';
 import 'package:learning_sm/log_in/home_page.dart';
 import 'package:learning_sm/log_in/log_in_page.dart';
+import 'package:learning_sm/shared_preferences/home_screen.dart';
+import 'package:learning_sm/shared_preferences/log_in_screen.dart';
+import 'package:learning_sm/shared_preferences/splash_screen.dart';
 //import 'package:learning_sm/pages/home_page.dart';
 
 void main() {
@@ -54,35 +57,49 @@ void main() {
 //   }
 // }
 
-//--------------- Api Call using Cubit------------------
+// //--------------- Api Call using Cubit------------------
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocProvider(
+//       create: (context) => FetchdataCubit(UserRepository()),
+//       child: MaterialApp(
+//         title: 'Api Call',
+//         home: Center(child: Main()),
+//         routes: {
+//           '/data': (context) => DataPage(),
+//           //'data/singlepage': (context) => SingleData()
+//         },
+//       ),
+//     );
+//   }
+// }
+
+// class Main extends StatelessWidget {
+//   const Main({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         child: ElevatedButton(
+//             onPressed: () {
+//               Navigator.pushNamed(context, '/data');
+//             },
+//             child: Text("Fetch Data")));
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FetchdataCubit(UserRepository()),
-      child: MaterialApp(
-        title: 'Api Call',
-        home: Center(child: Main()),
-        routes: {
-          '/data': (context) => DataPage(),
-          //'data/singlepage': (context) => SingleData()
-        },
-      ),
+    return MaterialApp(
+      title: 'shared_preferences',
+      home: SplashScreen(),
+      routes: {
+        '/login': (context) => LogInScreen(),
+        '/home': (context) => HomeScreen(),
+      },
     );
-  }
-}
-
-class Main extends StatelessWidget {
-  const Main({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/data');
-            },
-            child: Text("Fetch Data")));
   }
 }
