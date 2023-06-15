@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learning_sm/counter/cubit/counter_cubit.dart';
 import 'package:learning_sm/fetchData/cubit/fetchdata_cubit.dart';
+import 'package:learning_sm/fetchData/curd/remote.dart';
 import 'package:learning_sm/fetchData/data_page.dart';
 import 'package:learning_sm/fetchData/repo.dart';
-import 'package:learning_sm/fetchData/single_data.dart';
-import 'package:learning_sm/log_in/cubit/login_cubit.dart';
-import 'package:learning_sm/log_in/home_page.dart';
-import 'package:learning_sm/log_in/log_in_page.dart';
-import 'package:learning_sm/shared_preferences/home_screen.dart';
-import 'package:learning_sm/shared_preferences/log_in_screen.dart';
-import 'package:learning_sm/shared_preferences/splash_screen.dart';
+// import 'package:learning_sm/counter/cubit/counter_cubit.dart';
+// import 'package:learning_sm/fetchData/Model.dart';
+// import 'package:learning_sm/fetchData/cubit/fetchdata_cubit.dart';
+// import 'package:learning_sm/fetchData/data_page.dart';
+// import 'package:learning_sm/fetchData/repo.dart';
+// import 'package:learning_sm/fetchData/single_data.dart';
+// import 'package:learning_sm/log_in/cubit/login_cubit.dart';
+// import 'package:learning_sm/log_in/home_page.dart';
+// import 'package:learning_sm/log_in/log_in_page.dart';
+// import 'package:learning_sm/shared_preferences/home_screen.dart';
+// import 'package:learning_sm/shared_preferences/log_in_screen.dart';
+// import 'package:learning_sm/shared_preferences/splash_screen.dart';
 //import 'package:learning_sm/pages/home_page.dart';
 
 void main() {
@@ -90,16 +95,35 @@ void main() {
 //   }
 // }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'shared_preferences',
+//       home: SplashScreen(),
+//       routes: {
+//         '/login': (context) => LogInScreen(),
+//         '/home': (context) => HomeScreen(),
+//       },
+//     );
+//   }
+// }
+
 class MyApp extends StatelessWidget {
+  final Repository repository =
+      Repository('https://jsonplaceholder.typicode.com');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'shared_preferences',
-      home: SplashScreen(),
-      routes: {
-        '/login': (context) => LogInScreen(),
-        '/home': (context) => HomeScreen(),
-      },
+      title: 'Todo App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: BlocProvider(
+        create: (context) => DataCubit(repository),
+        child: TodoPage(),
+      ),
     );
   }
 }
